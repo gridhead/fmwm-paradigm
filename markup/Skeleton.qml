@@ -10,7 +10,7 @@ ApplicationWindow {
     property color  factorColour: "#0D1117"
     property string windowHeader: "Untitled"
     property int    headerHeight: 40
-    property int    windowRadius: skeleton.visibility === ApplicationWindow.Maximized ? 0 : 10
+    property int    windowRadius: skeleton.visibility === ApplicationWindow.Maximized ? 0 : 15
     property bool   darkMode: systemTheme ? systemTheme.systemIsDark : false
 
     // Keep up with the system theme changes

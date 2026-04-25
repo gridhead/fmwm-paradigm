@@ -26,8 +26,8 @@ Item {
         id: blurSnap
         anchors.fill: backSnap
         source: backSnap
-        radius: 16
-        samples: 32
+        radius: 15
+        samples: 30
         layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: Rectangle {
@@ -71,11 +71,35 @@ Item {
 
                 Repeater {
                     model: [
-                        { icon: "../assets/icon/fstd.svg", idx: 1 },
-                        { icon: "../assets/icon/atom.svg", idx: 2 },
-                        { icon: "../assets/icon/spin.svg", idx: 3 },
-                        { icon: "../assets/icon/labs.svg", idx: 4 },
-                        { icon: "../assets/icon/call.svg", idx: 5 }
+                        {
+                            icon: "../assets/icon/fstd.svg",
+                            name: "Official Editions",
+                            unit: 1
+                        },
+                        {
+                            icon: "../assets/icon/atom.svg",
+                            name: "Atomic Desktops",
+                            unit: 2 },
+                        {
+                            icon: "../assets/icon/spin.svg",
+                            name: "Fedora Spins",
+                            unit: 3
+                        },
+                        {
+                            icon: "../assets/icon/labs.svg",
+                            name: "Fedora Labs",
+                            unit: 4
+                        },
+                        {
+                            icon: "../assets/icon/pick.svg",
+                            name: "Custom Image",
+                            unit: 5
+                        },
+                        {
+                            icon: "../assets/icon/call.svg",
+                            name: "Information",
+                            unit: 6
+                        }
                     ]
 
                     Rectangle {
@@ -83,7 +107,7 @@ Item {
                         width: 40
                         height: 40
                         radius: 20
-                        color: modelData.idx === mainArea.selectedIcon
+                        color: modelData.unit === mainArea.selectedIcon
                             ? Qt.rgba(255, 255, 255, 0.25)
                             : iconPick.containsMouse
                                 ? Qt.rgba(1, 1, 1, 0.08)
@@ -106,7 +130,31 @@ Item {
                             anchors.fill: parent
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
-                            onClicked: mainArea.selectedIcon = modelData.idx
+                            onClicked: mainArea.selectedIcon = modelData.unit
+                        }
+
+                        // Icon labels
+                        Rectangle {
+                            anchors.left: parent.right
+                            anchors.leftMargin: 15
+                            anchors.verticalCenter: parent.verticalCenter
+                            width: iconTool.implicitWidth + 30
+                            height: 30
+                            radius: 15
+                            color: Qt.rgba(0, 0, 0, 0.75)
+                            visible: iconPick.containsMouse
+                            opacity: iconPick.containsMouse ? 1 : 0
+                            z: 100
+
+                            Behavior on opacity { NumberAnimation { duration: 150 } }
+
+                            Text {
+                                id: iconTool
+                                anchors.centerIn: parent
+                                text: modelData.name
+                                color: "white"
+                                font.pixelSize: 15
+                            }
                         }
                     }
                 }
