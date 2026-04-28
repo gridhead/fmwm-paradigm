@@ -12,7 +12,7 @@ Rectangle {
     Layout.fillHeight: true
     color: sidePick.hovered
         ? (sideArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.75) : Qt.rgba(0.8, 0.8, 0.8, 0.75))
-        : (sideArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.25) : Qt.rgba(0.8, 0.8, 0.8, 0.25))
+        : (sideArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.50) : Qt.rgba(0.8, 0.8, 0.8, 0.50))
     topLeftRadius: sideArea.windowRadius
     bottomLeftRadius: sideArea.windowRadius
     topRightRadius: 0
@@ -31,7 +31,7 @@ Rectangle {
         spacing: 5
 
         IconUnit {
-            location: "../assets/icon/hero.svg"
+            location: "../assets/icon/mono/hero.svg"
             darkMode: sideArea.darkMode
         }
 
@@ -40,32 +40,32 @@ Rectangle {
         Repeater {
             model: [
                 {
-                    icon: "../assets/icon/fstd.svg",
+                    icon: "../assets/icon/mono/fstd.svg",
                     name: "Official Editions",
                     unit: 1
                 },
                 {
-                    icon: "../assets/icon/atom.svg",
+                    icon: "../assets/icon/mono/atom.svg",
                     name: "Atomic Desktops",
                     unit: 2
                 },
                 {
-                    icon: "../assets/icon/spin.svg",
+                    icon: "../assets/icon/mono/spin.svg",
                     name: "Fedora Spins",
                     unit: 3
                 },
                 {
-                    icon: "../assets/icon/labs.svg",
+                    icon: "../assets/icon/mono/labs.svg",
                     name: "Fedora Labs",
                     unit: 4
                 },
                 {
-                    icon: "../assets/icon/pick.svg",
+                    icon: "../assets/icon/mono/pick.svg",
                     name: "Custom Image",
                     unit: 5
                 },
                 {
-                    icon: "../assets/icon/call.svg",
+                    icon: "../assets/icon/mono/call.svg",
                     name: "Information",
                     unit: 6
                 }

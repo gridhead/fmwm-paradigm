@@ -9,7 +9,7 @@ Item {
     property int  selectedIcon: 0
     property int  windowRadius: 0
     property bool darkMode: true
-    property int wallUnit: Math.floor(Math.random() * 19) + 26
+    property int  wallUnit: Math.floor(Math.random() * 19) + 26
 
     // Backdrop
     Image {
@@ -44,16 +44,17 @@ Item {
         spacing: 0
 
         SideArea {
+            z: 10
             selectedIcon: mainArea.selectedIcon
             windowRadius: mainArea.windowRadius
-            onIconSelected: (unit) => mainArea.selectedIcon = unit
+            onIconSelected: (unit) => mainArea.selectedIcon = (mainArea.selectedIcon === unit ? 0 : unit)
             darkMode: mainArea.darkMode
         }
 
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            color: "transparent"
+        BodyArea {
+            selectedIcon: mainArea.selectedIcon
+            darkMode: mainArea.darkMode
+            windowRadius: mainArea.windowRadius
         }
     }
 }

@@ -5,7 +5,7 @@ import Qt5Compat.GraphicalEffects
 Image {
     id: iconUnit
     property string location: "NULL"
-    property bool darkMode: true
+    property bool   darkMode: true
 
     source: iconUnit.location
     width: 30
