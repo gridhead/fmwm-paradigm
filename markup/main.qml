@@ -9,7 +9,7 @@ Skeleton {
     minimumWidth: 800
     minimumHeight: 480
     visible: true
-    windowHeader: "Fedora Media Writer"
+    windowHeader: "FMWM Paradigm"
 
     MainArea {
         anchors.fill: parent

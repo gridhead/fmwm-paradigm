@@ -7,7 +7,6 @@ ApplicationWindow {
     flags: Qt.FramelessWindowHint | Qt.Window
     color: "transparent"
 
-    property color  factorColour: "#0D1117"
     property string windowHeader: "Untitled"
     property int    headerHeight: 40
     property int    windowRadius: skeleton.visibility === ApplicationWindow.Maximized ? 0 : 15
@@ -26,7 +25,7 @@ ApplicationWindow {
     Rectangle {
         anchors.fill: parent
         radius: skeleton.windowRadius
-        color: skeleton.factorColour
+        color: "transparent"
         border.color: Qt.rgba(1, 1, 1, 0.1)
         clip: true
 
@@ -68,12 +67,13 @@ ApplicationWindow {
                 // Themer
                 Rectangle {
                     width: 30; height: 30; radius: 15
-                    color: darkModePick.containsMouse ? Qt.rgba(1, 1, 1, 0.1) : "transparent"
+                    color: darkModePick.containsMouse ? Qt.rgba(1, 1, 1, 0.25) : "transparent"
                     Text {
                         anchors.centerIn: parent
                         text: skeleton.darkMode ? "☀" : "☾"
-                        color: Qt.rgba(1, 1, 1, 0.5)
+                        color: darkModePick.containsMouse ? Qt.rgba(0.8, 0.8, 0.8, 1.00) : Qt.rgba(0.8, 0.8, 0.8, 0.50)
                         font.pixelSize: 15
+                        font.weight: Font.Bold
                     }
                     MouseArea {
                         id: darkModePick
@@ -87,12 +87,13 @@ ApplicationWindow {
                 // Minimize
                 Rectangle {
                     width: 30; height: 30; radius: 15
-                    color: minimizePick.containsMouse ? Qt.rgba(1, 1, 1, 0.1) : "transparent"
+                    color: minimizePick.containsMouse ? Qt.rgba(1, 1, 1, 0.25) : "transparent"
                     Text {
                         anchors.centerIn: parent
                         text: "─"
-                        color: Qt.rgba(1, 1, 1, 0.5)
+                        color: minimizePick.containsMouse ? Qt.rgba(0.8, 0.8, 0.8, 1.00) : Qt.rgba(0.8, 0.8, 0.8, 0.50)
                         font.pixelSize: 15
+                        font.weight: Font.Bold
                     }
                     MouseArea {
                         id: minimizePick
@@ -106,12 +107,13 @@ ApplicationWindow {
                 // Maximize
                 Rectangle {
                     width: 30; height: 30; radius: 15
-                    color: maximizePick.containsMouse ? Qt.rgba(1, 1, 1, 0.1) : "transparent"
+                    color: maximizePick.containsMouse ? Qt.rgba(1, 1, 1, 0.25) : "transparent"
                     Text {
                         anchors.centerIn: parent
                         text: skeleton.visibility === ApplicationWindow.Maximized ? "❐" : "□"
-                        color: Qt.rgba(1, 1, 1, 0.5)
+                        color: maximizePick.containsMouse ? Qt.rgba(0.8, 0.8, 0.8, 1.00) : Qt.rgba(0.8, 0.8, 0.8, 0.50)
                         font.pixelSize: 15
+                        font.weight: Font.Bold
                     }
                     MouseArea {
                         id: maximizePick
@@ -130,12 +132,13 @@ ApplicationWindow {
                 // Conclude
                 Rectangle {
                     width: 30; height: 30; radius: 15
-                    color: concludePick.containsMouse ? "#CC3333" : "transparent"
+                    color: concludePick.containsMouse ? Qt.rgba(0.8, 0.2, 0.2, 1.00) : "transparent"
                     Text {
                         anchors.centerIn: parent
                         text: "✕"
-                        color: concludePick.containsMouse ? "white" : Qt.rgba(1, 1, 1, 0.5)
+                        color: concludePick.containsMouse ? Qt.rgba(0.8, 0.8, 0.8, 1.00) : Qt.rgba(0.8, 0.8, 0.8, 0.50)
                         font.pixelSize: 15
+                        font.weight: Font.Bold
                     }
                     MouseArea {
                         id: concludePick

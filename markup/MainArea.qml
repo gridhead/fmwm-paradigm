@@ -27,8 +27,8 @@ Item {
         id: blurSnap
         anchors.fill: backSnap
         source: backSnap
-        radius: 15
-        samples: 30
+        radius: 20
+        samples: 40
         layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: Rectangle {
@@ -47,6 +47,7 @@ Item {
             selectedIcon: mainArea.selectedIcon
             windowRadius: mainArea.windowRadius
             onIconSelected: (unit) => mainArea.selectedIcon = unit
+            darkMode: mainArea.darkMode
         }
 
         Rectangle {
