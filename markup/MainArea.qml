@@ -9,14 +9,15 @@ Item {
     property int  selectedIcon: 0
     property int  windowRadius: 0
     property bool darkMode: true
+    property int wallUnit: Math.floor(Math.random() * 19) + 26
 
     // Backdrop
     Image {
         id: backSnap
         anchors.fill: parent
         source: mainArea.darkMode
-            ? "../assets/wall/fc44_dark.png"
-            : "../assets/wall/fc44_lite.png"
+            ? "../assets/wall/fc" + mainArea.wallUnit + "_dark.png"
+            : "../assets/wall/fc" + mainArea.wallUnit + "_lite.png"
         fillMode: Image.PreserveAspectCrop
         visible: false
     }
