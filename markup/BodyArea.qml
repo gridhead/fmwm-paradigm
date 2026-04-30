@@ -3,9 +3,13 @@ import QtQuick.Layouts
 
 Rectangle {
     id: bodyArea
-    property int  selectedIcon: 0
-    property bool darkMode: true
-    property int  windowRadius: 0
+    property int    selectedIcon: 0
+    property int    windowRadius: 0
+    property bool   darkMode: true
+    property bool   makeView: false
+    property string makeHead: ""
+    property string makeDesc: ""
+    property string makeIcon: ""
 
     Layout.fillWidth: true
     Layout.fillHeight: true
@@ -22,7 +26,6 @@ Rectangle {
         bottomLeftRadius: 0
         opacity: 0
         visible: opacity > 0
-
     }
 
     function pickComponent() {
@@ -37,7 +40,20 @@ Rectangle {
         }
     }
 
+    Connections {
+        target: dataLoad.item
+        ignoreUnknownSignals: true
+        function onCardClicked(head, desc, icon) {
+            bodyArea.makeHead = head
+            bodyArea.makeDesc = desc
+            bodyArea.makeIcon = icon
+            bodyArea.makeView = true
+        }
+    }
+
     onSelectedIconChanged: {
+        makeView = false
+        transitionToGrid.stop()
         if (selectedIcon !== 0) {
             slideEnter.stop()
             dataLoad.sourceComponent = bodyArea.pickComponent()
@@ -46,6 +62,17 @@ Rectangle {
             slideEnter.start()
         } else {
             slideLeave.start()
+        }
+    }
+
+    onMakeViewChanged: {
+        if (makeView) {
+            slideEnter.stop()
+            slideLeave.stop()
+            transitionToMake.start()
+        } else if (selectedIcon !== 0) {
+            transitionToMake.stop()
+            transitionToGrid.start()
         }
     }
 
@@ -67,6 +94,42 @@ Rectangle {
         }
         onFinished: {
             dataLoad.sourceComponent = null
+        }
+    }
+
+    SequentialAnimation {
+        id: transitionToMake
+        ParallelAnimation {
+            NumberAnimation { target: slideField; property: "opacity"; to: 0; duration: 500; easing.type: Easing.InCubic }
+            NumberAnimation { target: slideField; property: "y"; to: -slideField.parent.height; duration: 500; easing.type: Easing.InCubic }
+        }
+        ScriptAction {
+            script: {
+                dataLoad.sourceComponent = compMake
+                slideField.y = slideField.parent.height
+            }
+        }
+        ParallelAnimation {
+            NumberAnimation { target: slideField; property: "opacity"; to: 1; duration: 500; easing.type: Easing.OutCubic }
+            NumberAnimation { target: slideField; property: "y"; to: 0; duration: 500; easing.type: Easing.OutCubic }
+        }
+    }
+
+    SequentialAnimation {
+        id: transitionToGrid
+        ParallelAnimation {
+            NumberAnimation { target: slideField; property: "opacity"; to: 0; duration: 500; easing.type: Easing.InCubic }
+            NumberAnimation { target: slideField; property: "y"; to: slideField.parent.height; duration: 500; easing.type: Easing.InCubic }
+        }
+        ScriptAction {
+            script: {
+                dataLoad.sourceComponent = bodyArea.pickComponent()
+                slideField.y = -slideField.parent.height
+            }
+        }
+        ParallelAnimation {
+            NumberAnimation { target: slideField; property: "opacity"; to: 1; duration: 500; easing.type: Easing.OutCubic }
+            NumberAnimation { target: slideField; property: "y"; to: 0; duration: 500; easing.type: Easing.OutCubic }
         }
     }
 
@@ -174,6 +237,17 @@ Rectangle {
                 { head: "About FMWM", desc: "Fedora Media Writer information and credits", icon: "../assets/icon/tint/fedo.png" },
                 { head: "Report Issue", desc: "Report a bug or request a feature", icon: "../assets/icon/tint/fedo.png" }
             ]
+        }
+    }
+
+    Component {
+        id: compMake
+        MakeArea {
+            headText: bodyArea.makeHead
+            descText: bodyArea.makeDesc
+            iconText: bodyArea.makeIcon
+            darkMode: bodyArea.darkMode
+            onGoBack: bodyArea.makeView = false
         }
     }
 }

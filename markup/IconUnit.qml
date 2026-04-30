@@ -2,20 +2,28 @@ import QtQuick
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
-Image {
+Item {
     id: iconUnit
     property string location: "NULL"
     property bool   darkMode: true
 
-    source: iconUnit.location
     width: 30
     height: 30
-    sourceSize.width: 30
-    sourceSize.height: 30
     Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-    fillMode: Image.PreserveAspectFit
-    layer.enabled: true
-    layer.effect: ColorOverlay {
+
+    Image {
+        id: iconData
+        anchors.fill: parent
+        source: iconUnit.location
+        sourceSize.width: 100
+        sourceSize.height: 100
+        fillMode: Image.PreserveAspectFit
+        visible: false
+    }
+
+    ColorOverlay {
+        anchors.fill: iconData
+        source: iconData
         color: iconUnit.darkMode ? Qt.rgba(0.8, 0.8, 0.8, 1.00) : Qt.rgba(0.2, 0.2, 0.2, 1.00)
     }
 }

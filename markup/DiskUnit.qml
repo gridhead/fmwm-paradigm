@@ -3,29 +3,31 @@ import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 
 Rectangle {
-    id: dropUnit
+    id: diskUnit
     property string textHead: "NULL"
     property string textDesc: "NULL"
-    property string unitIcon: "NULL"
     property bool   darkMode: true
-    signal cardClicked()
+    property bool   selected: false
+    signal unitClicked()
 
     Layout.fillWidth: true
     Layout.preferredHeight: 80
     radius: 10
     clip: true
-    color: dropHand.containsMouse
-        ? (dropUnit.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.75) : Qt.rgba(0.8, 0.8, 0.8, 0.75))
-        : (dropUnit.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.25) : Qt.rgba(0.8, 0.8, 0.8, 0.25))
+    color: diskUnit.selected
+        ? (diskUnit.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.75) : Qt.rgba(0.8, 0.8, 0.8, 0.75))
+        : diskHand.containsMouse
+            ? (diskUnit.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.50) : Qt.rgba(0.8, 0.8, 0.8, 0.50))
+            : (diskUnit.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.25) : Qt.rgba(0.8, 0.8, 0.8, 0.25))
 
     Behavior on color { ColorAnimation { duration: 150 } }
 
     MouseArea {
-        id: dropHand
+        id: diskHand
         anchors.fill: parent
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
-        onClicked: dropUnit.cardClicked()
+        onClicked: diskUnit.unitClicked()
     }
 
     // Card icon
@@ -34,14 +36,14 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         height: parent.height
         width: parent.height
-        source: dropUnit.unitIcon
+        source: "../assets/icon/tint/usbp.png"
         fillMode: Image.PreserveAspectFit
         opacity: 0.50
         layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: Rectangle {
-                width: dropUnit.height
-                height: dropUnit.height
+                width: diskUnit.height
+                height: diskUnit.height
                 gradient: Gradient {
                     orientation: Gradient.Horizontal
                     GradientStop { position: 0.0; color: "transparent" }
@@ -59,8 +61,8 @@ Rectangle {
 
         Text {
             Layout.fillWidth: true
-            text: dropUnit.textHead
-            color: dropUnit.darkMode ? Qt.rgba(0.85, 0.85, 0.85, 1) : Qt.rgba(0.15, 0.15, 0.15, 1)
+            text: diskUnit.textHead
+            color: diskUnit.darkMode ? Qt.rgba(0.85, 0.85, 0.85, 1) : Qt.rgba(0.15, 0.15, 0.15, 1)
             font.pixelSize: 16
             font.weight: Font.Bold
         }
@@ -69,10 +71,9 @@ Rectangle {
 
         Text {
             Layout.fillWidth: true
-            text: dropUnit.textDesc
-            color: dropUnit.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
+            text: diskUnit.textDesc
+            color: diskUnit.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
             font.pixelSize: 12
-            wrapMode: Text.WordWrap
         }
     }
 }
