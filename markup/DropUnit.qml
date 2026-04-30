@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 
 Rectangle {
     id: dropUnit
@@ -8,7 +7,7 @@ Rectangle {
     property string textDesc: "NULL"
     property string unitIcon: "NULL"
     property bool   darkMode: true
-    signal cardClicked()
+    signal unitClicked()
 
     Layout.fillWidth: true
     Layout.preferredHeight: 80
@@ -20,35 +19,14 @@ Rectangle {
 
     Behavior on color { ColorAnimation { duration: 150 } }
 
-    MouseArea {
+    WorkHand {
         id: dropHand
-        anchors.fill: parent
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
-        onClicked: dropUnit.cardClicked()
+        onClicked: dropUnit.unitClicked()
     }
 
     // Card icon
-    Image {
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        height: parent.height
-        width: parent.height
-        source: dropUnit.unitIcon
-        fillMode: Image.PreserveAspectFit
-        opacity: 0.50
-        layer.enabled: true
-        layer.effect: OpacityMask {
-            maskSource: Rectangle {
-                width: dropUnit.height
-                height: dropUnit.height
-                gradient: Gradient {
-                    orientation: Gradient.Horizontal
-                    GradientStop { position: 0.0; color: "transparent" }
-                    GradientStop { position: 1.0; color: "white" }
-                }
-            }
-        }
+    CardIcon {
+        location: dropUnit.unitIcon
     }
 
     // Card text

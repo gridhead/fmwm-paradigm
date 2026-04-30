@@ -27,11 +27,8 @@ Rectangle {
         darkMode: iconActn.darkMode
     }
 
-    MouseArea {
+    WorkHand {
         id: iconPick
-        anchors.fill: parent
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
         onClicked: iconActn.clicked()
     }
 

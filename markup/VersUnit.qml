@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 
 Rectangle {
     id: versUnit
@@ -23,35 +22,14 @@ Rectangle {
 
     Behavior on color { ColorAnimation { duration: 150 } }
 
-    MouseArea {
+    WorkHand {
         id: versHand
-        anchors.fill: parent
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
         onClicked: versUnit.unitClicked()
     }
 
     // Card icon
-    Image {
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        height: parent.height
-        width: parent.height
-        source: "../assets/icon/tint/vers.png"
-        fillMode: Image.PreserveAspectFit
-        opacity: 0.50
-        layer.enabled: true
-        layer.effect: OpacityMask {
-            maskSource: Rectangle {
-                width: versUnit.height
-                height: versUnit.height
-                gradient: Gradient {
-                    orientation: Gradient.Horizontal
-                    GradientStop { position: 0.0; color: "transparent" }
-                    GradientStop { position: 1.0; color: "white" }
-                }
-            }
-        }
+    CardIcon {
+        location: "../assets/icon/tint/vers.png"
     }
 
     Rectangle {

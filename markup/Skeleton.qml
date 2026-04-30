@@ -65,110 +65,40 @@ ApplicationWindow {
                 spacing: 5
 
                 // Themer
-                Rectangle {
-                    width: 30
-                    height: 30
-                    radius: 15
-                    color: darkModePick.containsMouse
-                        ? (darkMode ? Qt.rgba(1, 1, 1, 0.25) : Qt.rgba(0, 0, 0, 0.25))
-                        : "transparent"
-                    IconUnit {
-                        anchors.centerIn: parent
-                        width: 20
-                        height: 20
-                        location: skeleton.darkMode
-                            ? "../assets/icon/mono/skel_lite.svg"
-                            : "../assets/icon/mono/skel_dark.svg"
-                        darkMode: skeleton.darkMode
-                        opacity: darkModePick.containsMouse ? 1.00 : 0.50
-                    }
-                    MouseArea {
-                        id: darkModePick
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: skeleton.darkMode = !skeleton.darkMode
-                    }
+                HeadPush {
+                    darkMode: skeleton.darkMode
+                    location: skeleton.darkMode ? "../assets/icon/mono/skel_lite.svg" : "../assets/icon/mono/skel_dark.svg"
+                    hangTint: skeleton.darkMode ? Qt.rgba(1, 1, 1, 0.25) : Qt.rgba(0, 0, 0, 0.25)
+                    onUnitClicked: skeleton.darkMode = !skeleton.darkMode
                 }
 
                 // Minimize
-                Rectangle {
-                    width: 30
-                    height: 30
-                    radius: 15
-                    color: minimizePick.containsMouse
-                        ? (darkMode ? Qt.rgba(1, 1, 1, 0.25) : Qt.rgba(0, 0, 0, 0.25))
-                        : "transparent"
-                    IconUnit {
-                        anchors.centerIn: parent
-                        width: 20
-                        height: 20
-                        location: "../assets/icon/mono/skel_mini.svg"
-                        darkMode: skeleton.darkMode
-                        opacity: minimizePick.containsMouse ? 1.00 : 0.50
-                    }
-                    MouseArea {
-                        id: minimizePick
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: skeleton.showMinimized()
-                    }
+                HeadPush {
+                    darkMode: skeleton.darkMode
+                    location: "../assets/icon/mono/skel_mini.svg"
+                    hangTint: skeleton.darkMode ? Qt.rgba(1, 1, 1, 0.25) : Qt.rgba(0, 0, 0, 0.25)
+                    onUnitClicked: skeleton.showMinimized()
                 }
 
                 // Maximize
-                Rectangle {
-                    width: 30
-                    height: 30
-                    radius: 15
-                    color: maximizePick.containsMouse
-                        ? (darkMode ? Qt.rgba(1, 1, 1, 0.25) : Qt.rgba(0, 0, 0, 0.25))
-                        : "transparent"
-                    IconUnit {
-                        anchors.centerIn: parent
-                        width: 20
-                        height: 20
-                        location: skeleton.visibility === ApplicationWindow.Maximized
-                            ? "../assets/icon/mono/skel_rest.svg"
-                            : "../assets/icon/mono/skel_maxi.svg"
-                        darkMode: skeleton.darkMode
-                        opacity: maximizePick.containsMouse ? 1.00 : 0.50
-                    }
-                    MouseArea {
-                        id: maximizePick
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: {
-                            if (skeleton.visibility === ApplicationWindow.Maximized)
-                                skeleton.showNormal()
-                            else
-                                skeleton.showMaximized()
-                        }
+                HeadPush {
+                    darkMode: skeleton.darkMode
+                    location: skeleton.visibility === ApplicationWindow.Maximized ? "../assets/icon/mono/skel_rest.svg" : "../assets/icon/mono/skel_maxi.svg"
+                    hangTint: skeleton.darkMode ? Qt.rgba(1, 1, 1, 0.25) : Qt.rgba(0, 0, 0, 0.25)
+                    onUnitClicked: {
+                        if (skeleton.visibility === ApplicationWindow.Maximized)
+                            skeleton.showNormal()
+                        else
+                            skeleton.showMaximized()
                     }
                 }
 
                 // Conclude
-                Rectangle {
-                    width: 30
-                    height: 30
-                    radius: 15
-                    color: concludePick.containsMouse ? Qt.rgba(0.8, 0.2, 0.2, 1.00) : "transparent"
-                    IconUnit {
-                        anchors.centerIn: parent
-                        width: 20
-                        height: 20
-                        location: "../assets/icon/mono/skel_shut.svg"
-                        darkMode: skeleton.darkMode
-                        opacity: concludePick.containsMouse ? 1.00 : 0.50
-                    }
-                    MouseArea {
-                        id: concludePick
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: skeleton.close()
-                    }
+                HeadPush {
+                    darkMode: skeleton.darkMode
+                    location: "../assets/icon/mono/skel_shut.svg"
+                    hangTint: Qt.rgba(0.8, 0.2, 0.2, 1.00)
+                    onUnitClicked: skeleton.close()
                 }
             }
         }

@@ -46,7 +46,7 @@ Item {
                         textDesc: modelData.desc
                         unitIcon: modelData.icon
                         darkMode: dropGrid.darkMode
-                        onCardClicked: dropGrid.cardClicked(modelData.head, modelData.desc, modelData.icon)
+                        onUnitClicked: dropGrid.cardClicked(modelData.head, modelData.desc, modelData.icon)
                     }
                 }
             }

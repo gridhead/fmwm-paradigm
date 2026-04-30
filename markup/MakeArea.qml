@@ -41,11 +41,7 @@ Item {
                     font.pixelSize: 14
                 }
 
-                Rectangle {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 1
-                    color: makeArea.darkMode ? Qt.rgba(1.00, 1.00, 1.00, 0.25) : Qt.rgba(0.00, 0.00, 0.00, 0.25)
-                }
+                SepaLine { darkMode: makeArea.darkMode }
 
                 Flickable {
                     Layout.fillWidth: true
@@ -95,11 +91,7 @@ Item {
                     font.pixelSize: 14
                 }
 
-                Rectangle {
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: 1
-                    color: makeArea.darkMode ? Qt.rgba(1.00, 1.00, 1.00, 0.25) : Qt.rgba(0.00, 0.00, 0.00, 0.25)
-                }
+                SepaLine { darkMode: makeArea.darkMode }
 
                 Flickable {
                     Layout.fillWidth: true
@@ -139,96 +131,28 @@ Item {
             }
         }
 
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 1
-            color: makeArea.darkMode ? Qt.rgba(1.00, 1.00, 1.00, 0.25) : Qt.rgba(0.00, 0.00, 0.00, 0.25)
-        }
+        SepaLine { darkMode: makeArea.darkMode }
 
         RowLayout {
             Layout.fillWidth: true
             spacing: 10
 
-            Rectangle {
-                Layout.preferredWidth: backIcon.width + backText.implicitWidth + 15
-                Layout.preferredHeight: 30
-                radius: 15
-                color: backHand.containsMouse
-                    ? (makeArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.75) : Qt.rgba(0.8, 0.8, 0.8, 0.75))
-                    : (makeArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.25) : Qt.rgba(0.8, 0.8, 0.8, 0.25))
-
-                Behavior on color { ColorAnimation { duration: 150 } }
-
-                MouseArea {
-                    id: backHand
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: makeArea.goBack()
-                }
-
-                Row {
-                    anchors.centerIn: parent
-                    spacing: 7.5
-
-                    IconUnit {
-                        id: backIcon
-                        width: 25; height: 25
-                        location: "../assets/icon/mono/prev.svg"
-                        darkMode: makeArea.darkMode
-                    }
-
-                    Text {
-                        id: backText
-                        anchors.verticalCenter: parent.verticalCenter
-                        rightPadding: 5
-                        text: "Return"
-                        color: makeArea.darkMode ? Qt.rgba(0.85, 0.85, 0.85, 1) : Qt.rgba(0.15, 0.15, 0.15, 1)
-                        font.pixelSize: 14
-                    }
-                }
+            PillPush {
+                iconLead: true
+                darkMode: makeArea.darkMode
+                location: "../assets/icon/mono/prev.svg"
+                mainText: "Return"
+                onUnitClicked: makeArea.goBack()
             }
 
             Item { Layout.fillWidth: true }
 
-            Rectangle {
-                Layout.preferredWidth: makeText.implicitWidth + makeIcon.width + 15
-                Layout.preferredHeight: 30
-                radius: 15
-                color: makeHand.containsMouse
-                    ? (makeArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.75) : Qt.rgba(0.8, 0.8, 0.8, 0.75))
-                    : (makeArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.25) : Qt.rgba(0.8, 0.8, 0.8, 0.25))
-
-                Behavior on color { ColorAnimation { duration: 150 } }
-
-                MouseArea {
-                    id: makeHand
-                    anchors.fill: parent
-                    hoverEnabled: true
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: makeArea.startWrite()
-                }
-
-                Row {
-                    anchors.centerIn: parent
-                    spacing: 7.5
-
-                    Text {
-                        id: makeText
-                        anchors.verticalCenter: parent.verticalCenter
-                        leftPadding: 5
-                        text: "Create"
-                        color: makeArea.darkMode ? Qt.rgba(0.85, 0.85, 0.85, 1) : Qt.rgba(0.15, 0.15, 0.15, 1)
-                        font.pixelSize: 14
-                    }
-
-                    IconUnit {
-                        id: makeIcon
-                        width: 25; height: 25
-                        location: "../assets/icon/mono/next.svg"
-                        darkMode: makeArea.darkMode
-                    }
-                }
+            PillPush {
+                iconLead: false
+                darkMode: makeArea.darkMode
+                location: "../assets/icon/mono/next.svg"
+                mainText: "Create"
+                onUnitClicked: makeArea.startWrite()
             }
         }
     }
