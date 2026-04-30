@@ -36,7 +36,7 @@ Item {
                 spacing: 5
 
                 Text {
-                    text: "Select your USB drive"
+                    text: "Select your storage drive"
                     color: makeArea.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
                     font.pixelSize: 14
                 }
@@ -107,8 +107,6 @@ Item {
                                 { head: "Fedora Linux 44", desc: "Latest stable release" },
                                 { head: "Fedora Linux 43", desc: "Previous stable release" },
                                 { head: "Fedora Linux 42", desc: "Impending end of life" },
-                                { head: "Fedora Linux 41", desc: "End of life" },
-                                { head: "Fedora Linux 40", desc: "End of life" },
                             ]
 
                             VersUnit {
@@ -129,9 +127,9 @@ Item {
             spacing: 10
 
             Rectangle {
-                Layout.preferredWidth: backIcon.width + backText.implicitWidth + 20
-                Layout.preferredHeight: 40
-                radius: 10
+                Layout.preferredWidth: backIcon.width + backText.implicitWidth + 15
+                Layout.preferredHeight: 30
+                radius: 15
                 color: backHand.containsMouse
                     ? (makeArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.75) : Qt.rgba(0.8, 0.8, 0.8, 0.75))
                     : (makeArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.25) : Qt.rgba(0.8, 0.8, 0.8, 0.25))
@@ -148,10 +146,11 @@ Item {
 
                 Row {
                     anchors.centerIn: parent
-                    spacing: 5
+                    spacing: 7.5
 
                     IconUnit {
                         id: backIcon
+                        width: 25; height: 25
                         location: "../assets/icon/mono/prev.svg"
                         darkMode: makeArea.darkMode
                     }
@@ -159,6 +158,7 @@ Item {
                     Text {
                         id: backText
                         anchors.verticalCenter: parent.verticalCenter
+                        rightPadding: 5
                         text: "Return"
                         color: makeArea.darkMode ? Qt.rgba(0.85, 0.85, 0.85, 1) : Qt.rgba(0.15, 0.15, 0.15, 1)
                         font.pixelSize: 14
@@ -169,9 +169,9 @@ Item {
             Item { Layout.fillWidth: true }
 
             Rectangle {
-                Layout.preferredWidth: makeText.implicitWidth + makeIcon.width + 20
-                Layout.preferredHeight: 40
-                radius: 10
+                Layout.preferredWidth: makeText.implicitWidth + makeIcon.width + 15
+                Layout.preferredHeight: 30
+                radius: 15
                 color: makeHand.containsMouse
                     ? (makeArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.75) : Qt.rgba(0.8, 0.8, 0.8, 0.75))
                     : (makeArea.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.25) : Qt.rgba(0.8, 0.8, 0.8, 0.25))
@@ -188,11 +188,12 @@ Item {
 
                 Row {
                     anchors.centerIn: parent
-                    spacing: 5
+                    spacing: 7.5
 
                     Text {
                         id: makeText
                         anchors.verticalCenter: parent.verticalCenter
+                        leftPadding: 5
                         text: "Create"
                         color: makeArea.darkMode ? Qt.rgba(0.85, 0.85, 0.85, 1) : Qt.rgba(0.15, 0.15, 0.15, 1)
                         font.pixelSize: 14
@@ -200,6 +201,7 @@ Item {
 
                     IconUnit {
                         id: makeIcon
+                        width: 25; height: 25
                         location: "../assets/icon/mono/next.svg"
                         darkMode: makeArea.darkMode
                     }

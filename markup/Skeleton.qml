@@ -66,14 +66,21 @@ ApplicationWindow {
 
                 // Themer
                 Rectangle {
-                    width: 30; height: 30; radius: 15
-                    color: darkModePick.containsMouse ? Qt.rgba(1, 1, 1, 0.25) : "transparent"
-                    Text {
+                    width: 30
+                    height: 30
+                    radius: 15
+                    color: darkModePick.containsMouse
+                        ? (darkMode ? Qt.rgba(1, 1, 1, 0.25) : Qt.rgba(0, 0, 0, 0.25))
+                        : "transparent"
+                    IconUnit {
                         anchors.centerIn: parent
-                        text: skeleton.darkMode ? "☀" : "☾"
-                        color: darkModePick.containsMouse ? Qt.rgba(0.8, 0.8, 0.8, 1.00) : Qt.rgba(0.8, 0.8, 0.8, 0.50)
-                        font.pixelSize: 15
-                        font.weight: Font.Bold
+                        width: 20
+                        height: 20
+                        location: skeleton.darkMode
+                            ? "../assets/icon/mono/skel_lite.svg"
+                            : "../assets/icon/mono/skel_dark.svg"
+                        darkMode: skeleton.darkMode
+                        opacity: darkModePick.containsMouse ? 1.00 : 0.50
                     }
                     MouseArea {
                         id: darkModePick
@@ -86,14 +93,19 @@ ApplicationWindow {
 
                 // Minimize
                 Rectangle {
-                    width: 30; height: 30; radius: 15
-                    color: minimizePick.containsMouse ? Qt.rgba(1, 1, 1, 0.25) : "transparent"
-                    Text {
+                    width: 30
+                    height: 30
+                    radius: 15
+                    color: minimizePick.containsMouse
+                        ? (darkMode ? Qt.rgba(1, 1, 1, 0.25) : Qt.rgba(0, 0, 0, 0.25))
+                        : "transparent"
+                    IconUnit {
                         anchors.centerIn: parent
-                        text: "─"
-                        color: minimizePick.containsMouse ? Qt.rgba(0.8, 0.8, 0.8, 1.00) : Qt.rgba(0.8, 0.8, 0.8, 0.50)
-                        font.pixelSize: 15
-                        font.weight: Font.Bold
+                        width: 20
+                        height: 20
+                        location: "../assets/icon/mono/skel_mini.svg"
+                        darkMode: skeleton.darkMode
+                        opacity: minimizePick.containsMouse ? 1.00 : 0.50
                     }
                     MouseArea {
                         id: minimizePick
@@ -106,14 +118,21 @@ ApplicationWindow {
 
                 // Maximize
                 Rectangle {
-                    width: 30; height: 30; radius: 15
-                    color: maximizePick.containsMouse ? Qt.rgba(1, 1, 1, 0.25) : "transparent"
-                    Text {
+                    width: 30
+                    height: 30
+                    radius: 15
+                    color: maximizePick.containsMouse
+                        ? (darkMode ? Qt.rgba(1, 1, 1, 0.25) : Qt.rgba(0, 0, 0, 0.25))
+                        : "transparent"
+                    IconUnit {
                         anchors.centerIn: parent
-                        text: skeleton.visibility === ApplicationWindow.Maximized ? "❐" : "□"
-                        color: maximizePick.containsMouse ? Qt.rgba(0.8, 0.8, 0.8, 1.00) : Qt.rgba(0.8, 0.8, 0.8, 0.50)
-                        font.pixelSize: 15
-                        font.weight: Font.Bold
+                        width: 20
+                        height: 20
+                        location: skeleton.visibility === ApplicationWindow.Maximized
+                            ? "../assets/icon/mono/skel_rest.svg"
+                            : "../assets/icon/mono/skel_maxi.svg"
+                        darkMode: skeleton.darkMode
+                        opacity: maximizePick.containsMouse ? 1.00 : 0.50
                     }
                     MouseArea {
                         id: maximizePick
@@ -131,14 +150,17 @@ ApplicationWindow {
 
                 // Conclude
                 Rectangle {
-                    width: 30; height: 30; radius: 15
+                    width: 30
+                    height: 30
+                    radius: 15
                     color: concludePick.containsMouse ? Qt.rgba(0.8, 0.2, 0.2, 1.00) : "transparent"
-                    Text {
+                    IconUnit {
                         anchors.centerIn: parent
-                        text: "✕"
-                        color: concludePick.containsMouse ? Qt.rgba(0.8, 0.8, 0.8, 1.00) : Qt.rgba(0.8, 0.8, 0.8, 0.50)
-                        font.pixelSize: 15
-                        font.weight: Font.Bold
+                        width: 20
+                        height: 20
+                        location: "../assets/icon/mono/skel_shut.svg"
+                        darkMode: skeleton.darkMode
+                        opacity: concludePick.containsMouse ? 1.00 : 0.50
                     }
                     MouseArea {
                         id: concludePick

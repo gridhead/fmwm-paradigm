@@ -1,41 +1,18 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
-
-
 Item {
     id: mainArea
     property int  selectedIcon: 0
     property int  windowRadius: 0
     property bool darkMode: true
-    property int  wallUnit: Math.floor(Math.random() * 19) + 26
 
-    // Backdrop
-    Image {
-        id: backSnap
+    Rectangle {
         anchors.fill: parent
-        source: mainArea.darkMode
-            ? "../assets/wall/fc" + mainArea.wallUnit + "_dark.png"
-            : "../assets/wall/fc" + mainArea.wallUnit + "_lite.png"
-        fillMode: Image.PreserveAspectCrop
-        visible: false
-    }
-
-    // Blur backdrop
-    GaussianBlur {
-        id: blurSnap
-        anchors.fill: backSnap
-        source: backSnap
-        radius: 20
-        samples: 40
-        layer.enabled: true
-        layer.effect: OpacityMask {
-            maskSource: Rectangle {
-                width: blurSnap.width
-                height: blurSnap.height
-                radius: mainArea.windowRadius
-            }
+        radius: mainArea.windowRadius
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: mainArea.darkMode ? Qt.rgba(0.20, 0.25, 0.25, 1) : Qt.rgba(0.60, 0.65, 0.65, 1) }
+            GradientStop { position: 1.0; color: mainArea.darkMode ? Qt.rgba(0.40, 0.45, 0.45, 1) : Qt.rgba(0.40, 0.45, 0.45, 1) }
         }
     }
 
