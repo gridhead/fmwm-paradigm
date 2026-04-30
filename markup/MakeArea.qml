@@ -33,12 +33,18 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.preferredWidth: 1
-                spacing: 5
+                spacing: 10
 
                 Text {
                     text: "Select your storage drive"
                     color: makeArea.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
                     font.pixelSize: 14
+                }
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 1
+                    color: makeArea.darkMode ? Qt.rgba(1.00, 1.00, 1.00, 0.25) : Qt.rgba(0.00, 0.00, 0.00, 0.25)
                 }
 
                 Flickable {
@@ -55,14 +61,14 @@ Item {
 
                         Repeater {
                             model: [
-                                { head: "KINGSTON USB Drive", desc: "16 GB - /dev/sda" },
-                                { head: "SMASHNUG USB Drive", desc: "24 GB - /dev/sdb" },
-                                { head: "ELEMENTS USB Drive", desc: "32 GB - /dev/sdc" },
-                                { head: "PASSPORT USB Drive", desc: "48 GB - /dev/sdd" },
-                                { head: "SANTDISK USB Drive", desc: "16 GB - /dev/sde" },
-                                { head: "COARSEIR USB Drive", desc: "24 GB - /dev/sdf" },
-                                { head: "FOURDATA USB Drive", desc: "32 GB - /dev/sdg" },
-                                { head: "NORTHERN USB Drive", desc: "48 GB - /dev/sdh" },
+                                { head: "KINGSTON USB Drive", desc: "16 GB • /dev/sda" },
+                                { head: "SMASHNUG USB Drive", desc: "24 GB • /dev/sdb" },
+                                { head: "ELEMENTS USB Drive", desc: "32 GB • /dev/sdc" },
+                                { head: "PASSPORT USB Drive", desc: "48 GB • /dev/sdd" },
+                                { head: "SANTDISK USB Drive", desc: "16 GB • /dev/sde" },
+                                { head: "COARSEIR USB Drive", desc: "24 GB • /dev/sdf" },
+                                { head: "FOURDATA USB Drive", desc: "32 GB • /dev/sdg" },
+                                { head: "NORTHERN USB Drive", desc: "48 GB • /dev/sdh" },
                             ]
 
                             DiskUnit {
@@ -81,12 +87,18 @@ Item {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 Layout.preferredWidth: 1
-                spacing: 5
+                spacing: 10
 
                 Text {
                     text: "Select Fedora Linux release"
                     color: makeArea.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
                     font.pixelSize: 14
+                }
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 1
+                    color: makeArea.darkMode ? Qt.rgba(1.00, 1.00, 1.00, 0.25) : Qt.rgba(0.00, 0.00, 0.00, 0.25)
                 }
 
                 Flickable {
@@ -103,15 +115,20 @@ Item {
 
                         Repeater {
                             model: [
-                                { head: "Fedora Linux 45", desc: "Testing release" },
-                                { head: "Fedora Linux 44", desc: "Latest stable release" },
-                                { head: "Fedora Linux 43", desc: "Previous stable release" },
-                                { head: "Fedora Linux 42", desc: "Impending end of life" },
+                                { head: "Fedora Linux 45", desc: "Testing release", arch: "x86_64" },
+                                { head: "Fedora Linux 45", desc: "Testing release", arch: "ARMv9" },
+                                { head: "Fedora Linux 44", desc: "Latest stable release", arch: "x86_64" },
+                                { head: "Fedora Linux 44", desc: "Latest stable release", arch: "ARMv9" },
+                                { head: "Fedora Linux 43", desc: "Previous stable release", arch: "x86_64" },
+                                { head: "Fedora Linux 43", desc: "Previous stable release", arch: "ARMv9" },
+                                { head: "Fedora Linux 42", desc: "Impending end of life", arch: "x86_64" },
+                                { head: "Fedora Linux 42", desc: "Impending end of life", arch: "ARMv9" },
                             ]
 
                             VersUnit {
                                 textHead: modelData.head
                                 textDesc: modelData.desc
+                                textArch: modelData.arch
                                 darkMode: makeArea.darkMode
                                 selected: index === versList.tookVers
                                 onUnitClicked: versList.tookVers = index
@@ -120,6 +137,12 @@ Item {
                     }
                 }
             }
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 1
+            color: makeArea.darkMode ? Qt.rgba(1.00, 1.00, 1.00, 0.25) : Qt.rgba(0.00, 0.00, 0.00, 0.25)
         }
 
         RowLayout {

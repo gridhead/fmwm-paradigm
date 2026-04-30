@@ -6,6 +6,7 @@ Rectangle {
     id: versUnit
     property string textHead: "NULL"
     property string textDesc: "NULL"
+    property string textArch: "NULL"
     property bool   darkMode: true
     property bool   selected: false
     signal unitClicked()
@@ -53,6 +54,37 @@ Rectangle {
         }
     }
 
+    Rectangle {
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.topMargin: 5
+        anchors.rightMargin: 5
+        width: archLine.width + 10
+        height: archLine.height + 5
+        radius: 5
+        color: versUnit.darkMode ? Qt.rgba(0.2, 0.2, 0.2, 0.75) : Qt.rgba(0.8, 0.8, 0.8, 0.75)
+
+        Row {
+            id: archLine
+            anchors.centerIn: parent
+            spacing: 5
+
+            IconUnit {
+                width: 15; height: 15
+                anchors.verticalCenter: parent.verticalCenter
+                location: "../assets/icon/mono/chip.svg"
+                darkMode: versUnit.darkMode
+            }
+
+            Text {
+                anchors.verticalCenter: parent.verticalCenter
+                text: versUnit.textArch
+                color: versUnit.darkMode ? Qt.rgba(0.6, 0.6, 0.6, 1.0) : Qt.rgba(0.4, 0.4, 0.4, 1.0)
+                font.pixelSize: 10
+            }
+        }
+    }
+
     // Card text
     ColumnLayout {
         anchors.fill: parent
@@ -68,6 +100,13 @@ Rectangle {
         }
 
         Item { Layout.fillHeight: true }
+
+        Text {
+            Layout.fillWidth: true
+            text: versUnit.textArch == "x86_64" ? "For general purpose desktop operating usage" : "For embedded devices and efficient computation"
+            color: versUnit.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
+            font.pixelSize: 12
+        }
 
         Text {
             Layout.fillWidth: true
