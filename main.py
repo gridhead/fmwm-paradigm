@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 
 from PySide6.QtCore import QObject, Signal, Property, Qt
-from PySide6.QtGui import QGuiApplication
+from PySide6.QtGui import QFont, QFontDatabase, QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
 
 
@@ -25,6 +25,12 @@ class ThemeDetector(QObject):
 
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
+
+    fontpath = Path(__file__).parent / "assets" / "font"
+    for item in fontpath.glob("it41-*.ttf"):
+        QFontDatabase.addApplicationFont(str(item))
+    app.setFont(QFont("Inter"))
+
     engine = QQmlApplicationEngine()
 
     theme = ThemeDetector(app)
