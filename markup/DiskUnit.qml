@@ -10,7 +10,7 @@ Rectangle {
     signal unitClicked()
 
     Layout.fillWidth: true
-    Layout.preferredHeight: 80
+    Layout.preferredHeight: 90
     radius: 10
     clip: true
     color: diskUnit.selected

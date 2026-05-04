@@ -8,7 +8,7 @@ Item {
     property string iconText: "NULL"
     property bool   darkMode: true
     signal goBack()
-    signal startWrite()
+    signal commenceCreation(string diskName, string versName)
 
     ColumnLayout {
         anchors.fill: parent
@@ -56,6 +56,7 @@ Item {
                         spacing: 10
 
                         Repeater {
+                            id: diskRepr
                             model: [
                                 { head: "KINGSTON USB Drive", desc: "16 GB • /dev/sda" },
                                 { head: "SMASHNUG USB Drive", desc: "24 GB • /dev/sdb" },
@@ -106,6 +107,7 @@ Item {
                         spacing: 10
 
                         Repeater {
+                            id: versRepr
                             model: [
                                 { head: "Fedora Linux 45", desc: "Testing release", arch: "x86_64" },
                                 { head: "Fedora Linux 45", desc: "Testing release", arch: "ARMv9" },
@@ -152,7 +154,11 @@ Item {
                 darkMode: makeArea.darkMode
                 location: "../assets/icon/mono/next.svg"
                 mainText: "Create"
-                onUnitClicked: makeArea.startWrite()
+                onUnitClicked: {
+                    var disk = diskList.tookDisk >= 0 ? diskRepr.model[diskList.tookDisk].head : "None selected"
+                    var vers = versList.tookVers >= 0 ? versRepr.model[versList.tookVers].head : "None selected"
+                    makeArea.commenceCreation(disk, vers)
+                }
             }
         }
     }

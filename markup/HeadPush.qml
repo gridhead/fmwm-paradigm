@@ -18,7 +18,7 @@ Rectangle {
         width: 20
         height: 20
         location: headPush.location
-        darkMode: darkMode
+        darkMode: headPush.darkMode
         opacity: pushPick.containsMouse ? 1.00 : 0.50
     }
     WorkHand {

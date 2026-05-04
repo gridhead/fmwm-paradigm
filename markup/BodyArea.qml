@@ -7,9 +7,10 @@ Rectangle {
     property int    windowRadius: 0
     property bool   darkMode: true
     property bool   makeView: false
-    property string makeHead: ""
-    property string makeDesc: ""
-    property string makeIcon: ""
+    property string makeHead: "NULL"
+    property string makeDesc: "NULL"
+    property string makeIcon: "NULL"
+    signal confMake(string head, string disk, string vers)
 
     Layout.fillWidth: true
     Layout.fillHeight: true
@@ -48,6 +49,9 @@ Rectangle {
             bodyArea.makeDesc = desc
             bodyArea.makeIcon = icon
             bodyArea.makeView = true
+        }
+        function onCommenceCreation(disk, vers) {
+            bodyArea.confMake(bodyArea.makeHead, disk, vers)
         }
     }
 

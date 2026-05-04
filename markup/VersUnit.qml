@@ -11,7 +11,7 @@ Rectangle {
     signal unitClicked()
 
     Layout.fillWidth: true
-    Layout.preferredHeight: 80
+    Layout.preferredHeight: 90
     radius: 10
     clip: true
     color: versUnit.selected
@@ -35,8 +35,8 @@ Rectangle {
     Rectangle {
         anchors.top: parent.top
         anchors.right: parent.right
-        anchors.topMargin: 5
-        anchors.rightMargin: 5
+        anchors.topMargin: 10
+        anchors.rightMargin: 10
         width: archLine.width + 10
         height: archLine.height + 5
         radius: 5
@@ -79,18 +79,26 @@ Rectangle {
 
         Item { Layout.fillHeight: true }
 
-        Text {
-            Layout.fillWidth: true
-            text: versUnit.textArch == "x86_64" ? "For general purpose desktop operating usage" : "For embedded devices and efficient computation"
-            color: versUnit.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
-            font.pixelSize: 12
-        }
+        ColumnLayout {
+            Layout.fillWidth: parent
+            // anchors.margins: 10
+            spacing: 2.5
 
-        Text {
-            Layout.fillWidth: true
-            text: versUnit.textDesc
-            color: versUnit.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
-            font.pixelSize: 12
+            Text {
+                Layout.fillWidth: true
+                text: versUnit.textArch == "x86_64" ? "For general purpose desktop operating usage" : "For embedded devices and efficient computation"
+                color: versUnit.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
+                font.pixelSize: 12
+                font.italic: false
+            }
+
+            Text {
+                Layout.fillWidth: true
+                text: versUnit.textDesc
+                color: versUnit.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
+                font.pixelSize: 12
+                font.italic: true
+            }
         }
     }
 }
