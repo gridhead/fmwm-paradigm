@@ -36,9 +36,9 @@ Item {
                 spacing: 10
 
                 Text {
-                    text: "Select your storage drive"
+                    text: "Select your storage device"
                     color: makeArea.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
-                    font.pixelSize: 14
+                    font.pixelSize: 12
                 }
 
                 SepaLine { darkMode: makeArea.darkMode }
@@ -89,7 +89,7 @@ Item {
                 Text {
                     text: "Select Fedora Linux release"
                     color: makeArea.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
-                    font.pixelSize: 14
+                    font.pixelSize: 12
                 }
 
                 SepaLine { darkMode: makeArea.darkMode }
@@ -147,7 +147,14 @@ Item {
                 onUnitClicked: makeArea.goBack()
             }
 
-            Item { Layout.fillWidth: true }
+            Item {
+                Layout.fillWidth: true
+                PillWarn {
+                    id: confWarn
+                    anchors.centerIn: parent
+                    darkMode: makeArea.darkMode
+                }
+            }
 
             PillPush {
                 iconLead: false
@@ -155,9 +162,17 @@ Item {
                 location: "../assets/icon/mono/next.svg"
                 mainText: "Create"
                 onUnitClicked: {
-                    var disk = diskList.tookDisk >= 0 ? diskRepr.model[diskList.tookDisk].head : "None selected"
-                    var vers = versList.tookVers >= 0 ? versRepr.model[versList.tookVers].head : "None selected"
-                    makeArea.commenceCreation(disk, vers)
+                    if (diskList.tookDisk < 0 && versList.tookVers < 0) {
+                        confWarn.showWarn("Select your storage device and Fedora Linux release")
+                    } else if (diskList.tookDisk < 0) {
+                        confWarn.showWarn("Select your storage device")
+                    } else if (versList.tookVers < 0) {
+                        confWarn.showWarn("Select Fedora Linux release")
+                    } else {
+                        var disk = diskRepr.model[diskList.tookDisk].head
+                        var vers = versRepr.model[versList.tookVers].head
+                        makeArea.commenceCreation(disk, vers)
+                    }
                 }
             }
         }
