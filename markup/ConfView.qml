@@ -35,8 +35,8 @@ Rectangle {
     GaussianBlur {
         anchors.fill: parent
         source: blurSrce
-        radius: 50
-        samples: 100
+        radius: 10
+        samples: 20
     }
 
     Rectangle {
@@ -45,6 +45,7 @@ Rectangle {
     }
 
     WorkHand {
+        cursorShape: Qt.ArrowCursor
         onClicked: confView.conveyReject()
     }
 
@@ -58,17 +59,8 @@ Rectangle {
         color: confView.darkMode ? Qt.rgba(0.00, 0.00, 0.00, 0.75) : Qt.rgba(0.60, 0.60, 0.60, 0.75)
 
         WorkHand {
+            cursorShape: Qt.ArrowCursor
             onClicked: {}
-        }
-
-        IconUnit {
-            anchors.top: parent.top
-            anchors.right: parent.right
-            anchors.margins: 10
-            width: 30
-            height: 30
-            location: "../assets/icon/mono/warn.svg"
-            darkMode: confView.darkMode
         }
 
         ColumnLayout {
@@ -77,11 +69,22 @@ Rectangle {
             anchors.margins: 10
             spacing: 10
 
-            Text {
-                text: "Starting creation"
-                color: confView.darkMode ? Qt.rgba(0.85, 0.85, 0.85, 1) : Qt.rgba(0.15, 0.15, 0.15, 1)
-                font.pixelSize: 20
-                font.weight: Font.Bold
+            RowLayout {
+                Layout.fillWidth: true
+
+                Text {
+                    text: "Starting creation"
+                    color: confView.darkMode ? Qt.rgba(0.85, 0.85, 0.85, 1) : Qt.rgba(0.15, 0.15, 0.15, 1)
+                    font.pixelSize: 20
+                    font.weight: Font.Bold
+                }
+
+                Item { Layout.fillWidth: true }
+
+                IconUnit {
+                    location: "../assets/icon/mono/warn.svg"
+                    darkMode: confView.darkMode
+                }
             }
 
             SepaLine { darkMode: confView.darkMode }
