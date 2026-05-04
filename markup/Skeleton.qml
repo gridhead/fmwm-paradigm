@@ -103,4 +103,82 @@ ApplicationWindow {
             }
         }
     }
+
+    // Edge resize
+    MouseArea {
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 2
+        cursorShape: Qt.SizeVerCursor
+        enabled: skeleton.visibility !== ApplicationWindow.Maximized
+        onPressed: skeleton.startSystemResize(Qt.TopEdge)
+    }
+
+    MouseArea {
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 2
+        cursorShape: Qt.SizeVerCursor
+        enabled: skeleton.visibility !== ApplicationWindow.Maximized
+        onPressed: skeleton.startSystemResize(Qt.BottomEdge)
+    }
+
+    MouseArea {
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        width: 2
+        cursorShape: Qt.SizeHorCursor
+        enabled: skeleton.visibility !== ApplicationWindow.Maximized
+        onPressed: skeleton.startSystemResize(Qt.LeftEdge)
+    }
+
+    MouseArea {
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        width: 2
+        cursorShape: Qt.SizeHorCursor
+        enabled: skeleton.visibility !== ApplicationWindow.Maximized
+        onPressed: skeleton.startSystemResize(Qt.RightEdge)
+    }
+
+    // Corner resize
+    MouseArea {
+        anchors.top: parent.top
+        anchors.left: parent.left
+        width: 2; height: 2
+        cursorShape: Qt.SizeFDiagCursor
+        enabled: skeleton.visibility !== ApplicationWindow.Maximized
+        onPressed: skeleton.startSystemResize(Qt.TopEdge | Qt.LeftEdge)
+    }
+
+    MouseArea {
+        anchors.top: parent.top
+        anchors.right: parent.right
+        width: 2; height: 2
+        cursorShape: Qt.SizeBDiagCursor
+        enabled: skeleton.visibility !== ApplicationWindow.Maximized
+        onPressed: skeleton.startSystemResize(Qt.TopEdge | Qt.RightEdge)
+    }
+
+    MouseArea {
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        width: 2; height: 2
+        cursorShape: Qt.SizeBDiagCursor
+        enabled: skeleton.visibility !== ApplicationWindow.Maximized
+        onPressed: skeleton.startSystemResize(Qt.BottomEdge | Qt.LeftEdge)
+    }
+
+    MouseArea {
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        width: 2; height: 2
+        cursorShape: Qt.SizeFDiagCursor
+        enabled: skeleton.visibility !== ApplicationWindow.Maximized
+        onPressed: skeleton.startSystemResize(Qt.BottomEdge | Qt.RightEdge)
+    }
 }
