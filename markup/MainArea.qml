@@ -10,6 +10,7 @@ Item {
     property string confHead: "NULL"
     property string confDisk: "NULL"
     property string confVers: "NULL"
+    property bool   progView: false
 
     Item {
         id: mainData
@@ -87,6 +88,54 @@ Item {
         diskText: mainArea.confDisk
         versText: mainArea.confVers
         onConveyReject: mainArea.confView = false
-        onConveyAccept: mainArea.confView = false
+        onConveyAccept: {
+            mainArea.confView = false
+            mainArea.progView = true
+        }
+    }
+
+    onProgViewChanged: {
+        if (progView) {
+            progShut.stop()
+            progOpen.start()
+        } else {
+            progOpen.stop()
+            progShut.start()
+        }
+    }
+
+    SequentialAnimation {
+        id: progOpen
+        ParallelAnimation {
+            NumberAnimation { target: progArea; property: "opacity"; to: 1; duration: 500; easing.type: Easing.OutExpo }
+        }
+    }
+
+    SequentialAnimation {
+        id: progShut
+        ParallelAnimation {
+            NumberAnimation { target: progArea; property: "opacity"; to: 0; duration: 500; easing.type: Easing.InExpo }
+        }
+        ScriptAction {
+            script: {
+                progArea.progress = 0.0
+                progArea.progStep = 0
+            }
+        }
+    }
+
+    ProgView {
+        id: progArea
+        z: 20
+        visible: opacity > 0
+        opacity: 0
+        darkMode: mainArea.darkMode
+        blurItem: mainData
+        windowRadius: mainArea.windowRadius
+        headText: mainArea.confHead
+        diskText: mainArea.confDisk
+        versText: mainArea.confVers
+        onConveyCancel: mainArea.progView = false
+        onConveyFinish: mainArea.progView = false
     }
 }

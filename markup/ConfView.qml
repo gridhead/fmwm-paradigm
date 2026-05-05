@@ -82,7 +82,7 @@ Rectangle {
                 Item { Layout.fillWidth: true }
 
                 IconUnit {
-                    location: "../assets/icon/mono/warn.svg"
+                    location: "../assets/icon/mono/prog_warn.svg"
                     darkMode: confView.darkMode
                 }
             }
@@ -97,32 +97,11 @@ Rectangle {
                 wrapMode: Text.WordWrap
             }
 
-            ColumnLayout {
-                id: confDeet
-                Layout.fillWidth: true
-                Layout.margins: 0
-                spacing: 5
-
-                Text {
-                    Layout.fillWidth: true
-                    text: "Edition. " + confView.headText
-                    color: confView.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
-                    font.pixelSize: 12
-                }
-
-                Text {
-                    Layout.fillWidth: true
-                    text: "Storage. " + confView.diskText
-                    color: confView.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
-                    font.pixelSize: 12
-                }
-
-                Text {
-                    Layout.fillWidth: true
-                    text: "Release. " + confView.versText
-                    color: confView.darkMode ? Qt.rgba(0.75, 0.75, 0.75, 1) : Qt.rgba(0.25, 0.25, 0.25, 1)
-                    font.pixelSize: 12
-                }
+            InfoColl {
+                darkMode: confView.darkMode
+                editName: confView.headText
+                diskName: confView.diskText
+                versName: confView.versText
             }
 
             Text {
