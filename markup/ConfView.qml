@@ -1,8 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
-import Qt5Compat.GraphicalEffects
 
-Rectangle {
+Item {
     id: confView
     property string headText: "NULL"
     property string diskText: "NULL"
@@ -14,34 +13,11 @@ Rectangle {
     signal conveyAccept()
 
     anchors.fill: parent
-    color: "transparent"
-    layer.enabled: true
-    layer.effect: OpacityMask {
-        maskSource: Rectangle {
-            width: confView.width
-            height: confView.height
-            radius: confView.windowRadius
-        }
-    }
 
-    ShaderEffectSource {
-        id: blurSrce
-        anchors.fill: parent
-        sourceItem: confView.blurItem
-        live: true
-        visible: false
-    }
-
-    GaussianBlur {
-        anchors.fill: parent
-        source: blurSrce
-        radius: 10
-        samples: 20
-    }
-
-    Rectangle {
-        anchors.fill: parent
-        color: confView.darkMode ? Qt.rgba(0, 0, 0, 0.50) : Qt.rgba(1, 1, 1, 0.50)
+    BlurDrop {
+        darkMode: confView.darkMode
+        blurItem: confView.blurItem
+        windowRadius: confView.windowRadius
     }
 
     WorkHand {
