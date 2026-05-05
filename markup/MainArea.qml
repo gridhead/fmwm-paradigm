@@ -136,6 +136,9 @@ Item {
         diskText: mainArea.confDisk
         versText: mainArea.confVers
         onConveyCancel: mainArea.progView = false
-        onConveyFinish: mainArea.progView = false
+        onConveyFinish: {
+            mainArea.progView = false
+            mainArea.selectedIcon = 0
+        }
     }
 }

@@ -44,11 +44,15 @@ Rectangle {
     Connections {
         target: dataLoad.item
         ignoreUnknownSignals: true
-        function onCardClicked(head, desc, icon) {
-            bodyArea.makeHead = head
-            bodyArea.makeDesc = desc
-            bodyArea.makeIcon = icon
-            bodyArea.makeView = true
+        function onCardClicked(head, desc, icon, link) {
+            if (link !== "") {
+                Qt.openUrlExternally(link)
+            } else {
+                bodyArea.makeHead = head
+                bodyArea.makeDesc = desc
+                bodyArea.makeIcon = icon
+                bodyArea.makeView = true
+            }
         }
         function onCommenceCreation(disk, vers) {
             bodyArea.confMake(bodyArea.makeHead, disk, vers)
@@ -239,7 +243,7 @@ Rectangle {
             darkMode: bodyArea.darkMode
             cardList: [
                 { head: "About FMWM", desc: "Fedora Media Writer information and credits", icon: "../assets/icon/tint/fedo.png" },
-                { head: "Report Issue", desc: "Report a bug or request a feature", icon: "../assets/icon/tint/fedo.png" }
+                { head: "Report Issue", desc: "Report a bug or request a feature", icon: "../assets/icon/tint/fedo.png", link: "https://github.com/gridhead/fmwm-paradigm/issues" }
             ]
         }
     }

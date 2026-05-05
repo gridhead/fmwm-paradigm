@@ -7,7 +7,7 @@ Item {
     property string headText: "NULL"
     property var    cardList: []
     property bool   darkMode: true
-    signal cardClicked(string head, string desc, string icon)
+    signal cardClicked(string head, string desc, string icon, string link)
 
     ColumnLayout {
         anchors.fill: parent
@@ -46,7 +46,7 @@ Item {
                         textDesc: modelData.desc
                         unitIcon: modelData.icon
                         darkMode: dropGrid.darkMode
-                        onUnitClicked: dropGrid.cardClicked(modelData.head, modelData.desc, modelData.icon)
+                        onUnitClicked: dropGrid.cardClicked(modelData.head, modelData.desc, modelData.icon, modelData.link || "")
                     }
                 }
             }
