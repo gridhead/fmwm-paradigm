@@ -4,11 +4,55 @@ Fedora Media Writer Modernization Paradigm
 
 This DESIGN PROTOTYPE is a WORK IN PROGRESS
 
+## Animation
+
+![](https://raw.githubusercontent.com/gridhead/fmwm-paradigm/refs/heads/main/anim.gif)
+
 ## Motivation
 
-I learned QML recently. When you get a new hammer, everything looks like a shiny nail.
+This design prototype is an exploration of what Fedora Media Writer could 
+potentially become. It is neither a final design nor a demand for change. It is
+a conversation starter – a concrete documented reference point for discussing
+modernization with the upstream maintainers, and the wider community. All the
+things done here are subject to revision, and the goal here is collaboration,
+not prescription. To add to that, this has been a learning experience for me
+since I learned QML recently.
 
-Also, no offense intended but the Fedora Media Writer experience feels dated right now.
+### First impressions really matter
+
+For a vast majority of folks here, Fedora Media Writer is the very first point
+of interaction they have with Fedora Project. It is the gateway through which
+curious users take their first step into Fedora Linux ecosystem, and therefore
+to the Fedora Project community too. That first impression around the look of
+the tooling and the feel of the experience shapes whether someone walks away
+excited to explore further or is discouraged before they even boot into the
+live Fedora Linux environment.
+
+Most of the people who contribute to the Fedora Project community had started
+off as Fedora Linux users first, and arguably, most of those users arrived via
+Fedora Media Writer. If we want a thriving community and a welcoming space, it
+is in our best interests to get this moment right. A hospitable and intuitive
+beginner's experience signals that Fedora Project values efforts spent in the
+out-of-the-box experience that leads to the user potentially wanting to become
+a contributor in the community.
+
+### Emerging case for modernization
+
+The experience, in its current state, while functional, feels archaic. It tries
+to feel at home across various platforms using the default Qt platform styling,
+which means it never quite achieves that on any platform, i.e. neither across 
+desktop environments nor on proprietary platforms. Rather than playing catchup
+with the look and feel of every platform, a thoughtfully designed custom-built
+interface can deliver a consistent and polished experience that establishes the
+Fedora Project brand identity.
+
+Beyond the (immediately noticeable) visual appeal, there are authentic user
+experience improvements that can be made, Better information hierarchy, clearer
+navigation through variants, current affairs of the Fedora Project community,
+and a design language that communicates approachability – these are the changes
+that make a tool genuinely easier to use, not just prettier to look at. Along
+with those changes, we can also use this opportunity to onboard contributors to
+maintain the project codebase.
 
 ## Disclosure
 
